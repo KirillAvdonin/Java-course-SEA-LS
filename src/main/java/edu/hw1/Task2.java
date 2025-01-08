@@ -4,7 +4,7 @@ public class Task2 {
     private Task2() {
     }
 
-    public static final int dischargeOffset = 10;
+    public static final int DISCHARGEOFFSET = 10;
 
     public static int countDigits(int number) {
         int newNumber = number;
@@ -12,7 +12,7 @@ public class Task2 {
 
         do {
             numbersCount++;
-            newNumber /= dischargeOffset;
+            newNumber /= DISCHARGEOFFSET;
         } while (newNumber != 0);
 
         return numbersCount;

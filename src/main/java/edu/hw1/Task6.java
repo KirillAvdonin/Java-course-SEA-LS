@@ -7,13 +7,13 @@ public class Task6 {
 
     }
 
-    public static final int kaprekarsConstant = 6174;
+    public static final int KAPREKARSCONSTANT = 6174;
 
     public static int countK(int number) {
         int newNumber = number;
         Task6 kap = new Task6();
         int countK = 0;
-        while (newNumber != kaprekarsConstant) {
+        while (newNumber != KAPREKARSCONSTANT) {
             int up = kap.sortedUp(newNumber);
             int down = kap.sortedDown(newNumber);
 

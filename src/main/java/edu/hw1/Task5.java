@@ -26,6 +26,7 @@ public class Task5 {
 
         return isPalindrome;
     }
+
     private static int getNextGeneration(int newNumber) {
         String str = String.valueOf(newNumber);
         StringBuilder sb = new StringBuilder();
