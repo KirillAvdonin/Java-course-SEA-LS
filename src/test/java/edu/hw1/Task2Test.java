@@ -16,13 +16,13 @@ class Task2Test {
     @DisplayName("Длина видео в секундах")
     void countDigitsTest2() {
         int test2 = Task2.countDigits(544);
-        Assertions.assertEquals(4, test2);
+        Assertions.assertEquals(3, test2);
     }
 
     @Test
     @DisplayName("Длина видео в секундах")
     void countDigitsTest3() {
         int test3 = Task2.countDigits(0);
-        Assertions.assertEquals(4, test3);
+        Assertions.assertEquals(1, test3);
     }
 }
