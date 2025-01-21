@@ -8,11 +8,11 @@ public class Task2 {
 
     public static int countDigits(int number) {
         int numbersCount = 0;
-
+        int newNumber = number;
         do {
             numbersCount++;
-            number /= DISCHARGE_OFFSET;
-        } while (number != 0);
+            newNumber /= DISCHARGE_OFFSET;
+        } while (newNumber != 0);
 
         return numbersCount;
     }

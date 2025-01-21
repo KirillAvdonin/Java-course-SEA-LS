@@ -11,11 +11,12 @@ public class Task6 {
 
     public static int countK(int number) {
         int countK = 0;
-        while (number != KAPREKARS_CONSTANT) {
+        int newNumber = number;
+        while (newNumber != KAPREKARS_CONSTANT) {
             int up = sortedUp(number);
             int down = sortedDown(number);
 
-            number = down - up;
+            newNumber = down - up;
             countK++;
         }
         return countK;

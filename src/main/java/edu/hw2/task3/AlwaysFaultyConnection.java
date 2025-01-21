@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 
 public class AlwaysFaultyConnection implements Connection {
     private static final Logger LOGGER = LogManager.getLogger();
+
     @Override
     public void execute(String command) {
         throw new ConnectionException("Проблемное соединение, выполнение команд невозможно");
@@ -12,6 +13,6 @@ public class AlwaysFaultyConnection implements Connection {
 
     @Override
     public void close() throws Exception {
-    LOGGER.info("Соединение закрыто");
+        LOGGER.info("Соединение закрыто");
     }
 }
