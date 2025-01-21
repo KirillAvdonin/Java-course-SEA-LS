@@ -7,14 +7,12 @@ public class Task4 {
 
     public static String fixString(String str) {
         char[] stringArray = str.toCharArray();
-        for (int i = 0; i < stringArray.length; i++) {
-            if (i % 2 != 0) {
-                char temp = 0;
-                temp = stringArray[i - 1];
-                stringArray[i - 1] = stringArray[i];
-                stringArray[i] = temp;
-            }
+        char temp;
 
+        for (int i = 1; i < stringArray.length; i+=2) {
+                temp = stringArray[i];
+                stringArray[i] = stringArray[i - 1];
+                stringArray[i - 1] = temp;
         }
         return String.valueOf(stringArray);
     }

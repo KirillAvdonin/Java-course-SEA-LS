@@ -18,7 +18,7 @@ public class Task5 {
 
             if (str.charAt(left) != str.charAt(right)) {
                 newNumber = getNextGeneration(newNumber);
-                str = str.valueOf(newNumber);
+                str = String.valueOf(newNumber);
             } else {
                 isPalindrome = true;
             }

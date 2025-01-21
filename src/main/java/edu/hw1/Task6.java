@@ -7,17 +7,15 @@ public class Task6 {
 
     }
 
-    public static final int KAPREKARSCONSTANT = 6174;
+    public static final int KAPREKARS_CONSTANT = 6174;
 
     public static int countK(int number) {
-        int newNumber = number;
-        Task6 kap = new Task6();
         int countK = 0;
-        while (newNumber != KAPREKARSCONSTANT) {
-            int up = kap.sortedUp(newNumber);
-            int down = kap.sortedDown(newNumber);
+        while (number != KAPREKARS_CONSTANT) {
+            int up = sortedUp(number);
+            int down = sortedDown(number);
 
-            newNumber = down - up;
+            number = down - up;
             countK++;
         }
         return countK;
@@ -43,6 +41,7 @@ public class Task6 {
     private static void reverse(char[] array) {
         int i = 0;
         int j = array.length - 1;
+
         while (i < j) {
             char temp = array[i];
             array[i] = array[j];
