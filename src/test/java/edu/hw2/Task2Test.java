@@ -13,6 +13,7 @@ public class Task2Test {
     public void RectangleConstructorAndGetAreaMethodTest() {
         Rectangle rectangle1 = new Rectangle(2,4);
         Rectangle rectangle2 = new Rectangle(78,2);
+
         Assertions.assertEquals(8,rectangle1.getArea());
         Assertions.assertEquals(156,rectangle2.getArea());
 
@@ -22,6 +23,7 @@ public class Task2Test {
     public void squareConstructorAndGetAreaMethodTest() {
         Square square1 = new Square(5);
         Square square2 = new Square(10);
+
         Assertions.assertEquals(25,square1.getArea());
         Assertions.assertEquals(100,square2.getArea());
     }
