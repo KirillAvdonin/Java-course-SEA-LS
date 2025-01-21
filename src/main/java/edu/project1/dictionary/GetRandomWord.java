@@ -15,7 +15,7 @@ public class GetRandomWord implements Dictionary {
         List<String> words;
 
         try {
-            words = Files.readAllLines((Paths.get("src/main/java/edu/project1/resources/Dictionary.txt")));
+            words = Files.readAllLines((Paths.get("src/main/java/edu/project1/resources/dictionary.txt")));
         } catch (IOException e) {
             throw new RuntimeException("Словарь пуст");
         }
