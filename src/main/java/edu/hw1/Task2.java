@@ -9,6 +9,7 @@ public class Task2 {
     public static int countDigits(int number) {
         int numbersCount = 0;
         int newNumber = number;
+
         do {
             numbersCount++;
             newNumber /= DISCHARGE_OFFSET;

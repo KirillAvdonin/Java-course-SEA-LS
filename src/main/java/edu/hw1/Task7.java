@@ -7,11 +7,13 @@ public class Task7 {
 
     public static int rotateLeft(int n, int shift) {
         boolean direction = true;
+
         return rotate(n, shift, direction);
     }
 
     public static int rotateRight(int n, int shift) {
         boolean direction = false;
+
         return rotate(n, shift, direction);
     }
 
@@ -29,6 +31,7 @@ public class Task7 {
             String sb2 = stringBuilder.substring(0, stringBuilder.length() - currentShift);
             currentNumber = Integer.parseInt(sb1 + sb2, 2);
         }
+
         return currentNumber;
     }
 }

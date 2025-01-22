@@ -9,6 +9,7 @@ public class CallingInfo {
     public static Record callingInfo() {
         StackTraceElement[] info = Thread.currentThread().getStackTrace();
         StackTraceElement caller = info[1];
+
         return new CallingInfoRecord(caller.getClassName(), caller.getMethodName());
     }
 }

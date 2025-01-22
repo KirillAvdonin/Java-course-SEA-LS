@@ -14,6 +14,7 @@ public class Task4 {
             stringArray[i] = stringArray[i - 1];
             stringArray[i - 1] = temp;
         }
+
         return String.valueOf(stringArray);
     }
 }

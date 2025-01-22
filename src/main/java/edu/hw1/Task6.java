@@ -12,30 +12,38 @@ public class Task6 {
     public static int countK(int number) {
         int countK = 0;
         int newNumber = number;
+
         while (newNumber != KAPREKARS_CONSTANT) {
-            int up = sortedUp(number);
-            int down = sortedDown(number);
+            int up = sortedUp(newNumber);
+            int down = sortedDown(newNumber);
 
             newNumber = down - up;
             countK++;
         }
+
         return countK;
     }
 
     private static int sortedUp(int number) {
         String numStr = String.valueOf(number);
         char[] digits = numStr.toCharArray();
+
         Arrays.sort(digits);
+
         String sortedStr = new String(digits);
+
         return Integer.parseInt(sortedStr);
     }
 
     private static int sortedDown(int number) {
         String numStr = String.valueOf(number);
         char[] digits = numStr.toCharArray();
+
         Arrays.sort(digits);
         reverse(digits);
+
         String sortedStr = new String(digits);
+
         return Integer.parseInt(sortedStr);
     }
 
