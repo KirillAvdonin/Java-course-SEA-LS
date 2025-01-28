@@ -42,6 +42,8 @@ public class ClusteringBrackets {
             return false;
         } else if ((expression.indexOf('(') == -1 || expression.indexOf(')') == -1)) {
             return false;
-        } else return expression.length() % 2 == 0;
+        } else {
+            return expression.length() % 2 == 0;
+        }
     }
 }
