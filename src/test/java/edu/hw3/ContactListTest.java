@@ -1,10 +1,10 @@
 package edu.hw3;
 
-import edu.hw3.ContactList.SortedContacts;
+import edu.hw3.contactList.SortedContacts;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static edu.hw3.ContactList.ContactList.parseContact;
+import static edu.hw3.contactList.ContactList.parseContact;
 
 import java.util.ArrayList;
 import java.util.List;

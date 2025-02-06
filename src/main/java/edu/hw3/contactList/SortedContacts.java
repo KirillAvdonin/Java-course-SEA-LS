@@ -1,4 +1,4 @@
-package edu.hw3.ContactList;
+package edu.hw3.contactList;
 
 import java.util.List;
 
