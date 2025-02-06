@@ -1,34 +1,36 @@
 package edu.hw3;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.TreeSet;
 
 public class FrequencyDictionary {
 
-    public FrequencyDictionary() {
+    private FrequencyDictionary() {
 
     }
 
-    public <T> String freqDict(List<T> dictionary) {
-        TreeSet<T> dictionarySet = new TreeSet<>(dictionary);
-        StringBuilder result = new StringBuilder().append("{");
+    public static <T> HashMap<T, Integer> freqDict(List<T> dictionary) {
+        try {
+            if (!dictionary.isEmpty()) {
+                TreeSet<T> dictionarySet = new TreeSet<>(dictionary);
+                HashMap<T, Integer> result = new HashMap<>();
 
-        for (T word : dictionarySet) {
-            if (word instanceof String) {
-                result.append("\"").append(word).append("\" : ")
-                    .append(Collections.frequency(dictionary, word));
+                for (T word : dictionarySet) {
+                    if (!word.equals("")) {
+                        result.put(word, Collections.frequency(dictionary, word));
+                    } else {
+                        throw new IllegalArgumentException("Элемент листа не должен быть пустым");
+                    }
+                }
+                return result;
             } else {
-                result.append(word).append(" : ").append(Collections.frequency(dictionary, word));
+                throw new IllegalArgumentException("Лист не должен быть пустым");
             }
-            if (dictionarySet.last().equals(word)) {
-                result.append("}");
-            } else {
-                result.append(", ");
-            }
+        } catch (NullPointerException e) {
+            throw new IllegalArgumentException("Лист не должен содержать null");
         }
-
-        return String.valueOf(result);
     }
 }
 

@@ -28,6 +28,7 @@ public class ConvertToRoman {
 
     public String convertToRoman(int number) {
         int currentNumber = number;
+
         while (currentNumber != 0) {
             int nearestKey = NUMBERS_UP_TO_ONE_THOUSAND.floorKey(currentNumber);
 

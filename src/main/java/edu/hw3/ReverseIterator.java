@@ -1,29 +1,29 @@
 package edu.hw3;
 
-import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
-public class ReverseIterator<T> implements Iterator<T> {
-    private final List<T> originalCollection;
-    private int index;
+public class ReverseIterator<T> {
 
-    public ReverseIterator(List<T> originalCollection) {
-        this.originalCollection = originalCollection;
-        this.index = originalCollection.size() - 1;
+    private final List<T> list;
+    private final ListIterator<T> iterator;
+
+    public ReverseIterator(List<T> list) {
+        this.list = list;
+        this.iterator = list.listIterator();
+
+        while (iterator.hasNext()) {
+            iterator.next();
+        }
     }
 
-    @Override
     public boolean hasNext() {
-        return index >= 0;
+        return iterator.hasPrevious();
     }
 
-    @Override
     public T next() {
-        return originalCollection.get(index--);
+        return iterator.previous();
     }
-}
 
-
-
-
+    }
 

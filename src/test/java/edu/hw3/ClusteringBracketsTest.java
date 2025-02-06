@@ -1,7 +1,9 @@
 package edu.hw3;
 
 import org.junit.jupiter.api.Test;
+import java.util.List;
 import static edu.hw3.ClusteringBrackets.isCorrectlyInput;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 import static edu.hw3.ClusteringBrackets.clusterize;
 
@@ -9,39 +11,34 @@ class ClusteringBracketsTest {
 
     @Test
     void clusterizeTest() {
-        assertEquals("[" + "\"()\"" + ", " + "\"()\"" + ", " + "\"()\"" + "]", clusterize("()()()"));
+        assertEquals(List.of("()", "()", "()"), clusterize("()()()"));
 
-        assertEquals("[" + "\"((()))\"" + "]", clusterize("((()))"));
+        assertEquals(List.of("((()))"), clusterize("((()))"));
 
         assertEquals(
-            "[" + "\"((()))\"" + ", " + "\"(())\"" + ", " + "\"()\"" + ", " + "\"()\"" + ", " + "\"(()())\"" + "]",
+            List.of("((()))", "(())", "()", "()", "(()())"),
             clusterize("((()))(())()()(()())")
         );
-        assertEquals("[" + "\"((())())\"" + ", " + "\"(()(()()))\"" + "]", clusterize("((())())(()(()()))"));
 
-        IllegalArgumentException thrown1 = assertThrows(
-            IllegalArgumentException.class,
-            () -> clusterize("(((((((((((((((((((("),
-            "Некорректный ввод скобок для кластеризации"
-        );
-        assertEquals("Некорректный ввод скобок для кластеризации", thrown1.getMessage());
+        assertEquals(List.of("((())())", "(()(()()))"), clusterize("((())())(()(()()))"));
 
-        IllegalArgumentException thrown2 = assertThrows(
-            IllegalArgumentException.class,
-            () -> clusterize("{{{{{{}}}}}}"),
-            "Некорректный ввод скобок для кластеризации"
-        );
-        assertEquals("Некорректный ввод скобок для кластеризации", thrown2.getMessage());
+        assertThatThrownBy(() -> clusterize(null)).isInstanceOf(IllegalArgumentException.class).hasMessageContaining("Строка не должна быть null");
+
+        assertThatThrownBy(() -> clusterize("((((((((((")).isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining("Некорректный ввод скобок для кластеризации");
+
+        assertThatThrownBy(() -> clusterize("")).isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining("Строка не должна быть пустой");
     }
 
     @Test
     void isCorrectlyInputTest() {
         assertTrue(isCorrectlyInput("()()()()"));
         assertTrue(isCorrectlyInput("(((())))"));
+        assertTrue(isCorrectlyInput("(({}))"));
 
         assertFalse(isCorrectlyInput("(()"));
-        assertFalse(isCorrectlyInput("(({}))"));
-        assertFalse(isCorrectlyInput("(a(a)0932"));
-        assertFalse(isCorrectlyInput("())"));
+        assertFalse(isCorrectlyInput("(a()"));
+        assertFalse(isCorrectlyInput("{09())"));
     }
 }

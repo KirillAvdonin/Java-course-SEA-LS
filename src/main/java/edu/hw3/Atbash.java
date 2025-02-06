@@ -6,20 +6,29 @@ public class Atbash {
 
     }
 
-    public static String atbash(String expression) {
-        char[] charExpression = expression.toCharArray();
+    public static String atbash(String expression) throws IllegalArgumentException {
 
-        for (int i = 0; i < charExpression.length; i++) {
+        try {
+            if (!expression.isEmpty()) {
 
-            if (Character.isLetter(charExpression[i])) {
+                char[] expressionCharArray = expression.toCharArray();
+                char charExpression;
 
-                if (Character.isLowerCase(charExpression[i])) {
-                    charExpression[i] = (char) ('z' + 'a' - charExpression[i]);
-                } else {
-                    charExpression[i] = (char) ('Z' + 'A' - charExpression[i]);
+                for (int i = 0; i < expressionCharArray.length; i++) {
+                    charExpression = expressionCharArray[i];
+
+                    if (charExpression >= 'a' && charExpression <= 'z') {
+                        expressionCharArray[i] = (char) ('z' + 'a' - charExpression);
+                    } else if (charExpression >= 'A' && charExpression <= 'Z') {
+                        expressionCharArray[i] = (char) ('Z' + 'A' - charExpression);
+                    }
                 }
+                return String.valueOf(expressionCharArray);
+            } else {
+                throw new IllegalArgumentException("Строка не должна быть пустой");
             }
+        } catch (NullPointerException e) {
+            throw new IllegalArgumentException("Строка не должна быть null");
         }
-        return String.valueOf(charExpression);
     }
 }

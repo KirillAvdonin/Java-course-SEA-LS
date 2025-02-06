@@ -15,5 +15,7 @@ class ConvertToRomanTest {
         assertEquals("CMXLV", new ConvertToRoman().convertToRoman(945));
 
         assertEquals("LV", new ConvertToRoman().convertToRoman(55));
+
+        assertEquals("V", new ConvertToRoman().convertToRoman(5));
     }
 }

@@ -7,7 +7,6 @@ import org.jetbrains.annotations.NotNull;
 public class Stock implements Comparable<Stock> {
     private final String name;
     private final Double price;
-
     DecimalFormat df = new DecimalFormat("#.###");
 
     public Stock(String name, double price) {

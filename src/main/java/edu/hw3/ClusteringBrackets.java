@@ -1,49 +1,77 @@
 package edu.hw3;
 
 import java.util.ArrayList;
+import java.util.Deque;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 public class ClusteringBrackets {
+
+    private static int countOpenBrackets = 0;
+    private static int countCloseBrackets = 0;
 
     private ClusteringBrackets() {
 
     }
 
-    public static String clusterize(String brackets) {
-        char[] bracketsChar = brackets.toCharArray();
+    public static List<String> clusterize(String brackets) {
         ArrayList<String> clusterizedBrackets = new ArrayList<>();
-        int countOpenBrackets = 0;
-        int countCloseBrackets = 0;
-        StringBuilder partOfClustering = new StringBuilder();
 
         if (isCorrectlyInput(brackets)) {
-            for (char c : bracketsChar) {
+            char[] bracketsChar = brackets.toCharArray();
+            StringBuilder partOfExpression = new StringBuilder();
 
-                if (c == '(') {
+            for (char c : bracketsChar) {
+                if (c == '{' || c == '[' || c == '(') {
                     countOpenBrackets++;
-                    partOfClustering.append(c);
+                    partOfExpression.append(c);
+
                 } else {
                     countCloseBrackets++;
-                    partOfClustering.append(c);
+                    partOfExpression.append(c);
                 }
 
                 if (countCloseBrackets == countOpenBrackets) {
-                    clusterizedBrackets.add("\"" + partOfClustering + "\"");
-                    partOfClustering.delete(0, partOfClustering.length());
+                    clusterizedBrackets.add(partOfExpression.toString());
+                    partOfExpression.delete(0, partOfExpression.length());
                 }
             }
         } else {
             throw new IllegalArgumentException("Некорректный ввод скобок для кластеризации");
         }
-        return String.valueOf(clusterizedBrackets);
+
+        return clusterizedBrackets;
     }
 
     public static boolean isCorrectlyInput(String expression) {
-        if (!expression.matches("[^{}\\]\\[]+")) {
-            return false;
-        } else if ((expression.indexOf('(') == -1 || expression.indexOf(')') == -1)) {
-            return false;
-        } else {
-            return expression.length() % 2 == 0;
+
+        Map<Character, Character> brackets = new HashMap<>();
+        brackets.put(']', '[');
+        brackets.put(')', '(');
+        brackets.put('}', '{');
+
+        Deque<Character> stack = new LinkedList<>();
+
+        try {
+            if (expression.isEmpty()) {
+                throw new IllegalArgumentException("Строка не должна быть пустой");
+            } else {
+                for (Character c : expression.toCharArray()) {
+                    if (brackets.containsValue(c)) {
+                        stack.push(c);
+                    } else if (brackets.containsKey(c)) {
+                        if (stack.isEmpty() || stack.pop() != brackets.get(c)) {
+                            return false;
+                        }
+                    }
+                }
+            }
+        } catch (NullPointerException e) {
+            throw new IllegalArgumentException("Строка не должна быть null");
         }
+        return stack.isEmpty();
     }
 }
+
