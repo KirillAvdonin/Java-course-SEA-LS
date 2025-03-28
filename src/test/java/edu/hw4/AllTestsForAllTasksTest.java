@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class AllTestsForAllTasks {
+public class AllTestsForAllTasksTest {
 
     public final List<Animal> animals = Arrays.asList(
         new Animal("Барсик", Animal.Type.CAT, Animal.Sex.M, 4, 25, 5, false),
