@@ -1,31 +1,28 @@
 package edu.hw1;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static edu.hw1.Task6.countK;
 
-public class Task6Test {
+class Task6Test {
     @Test
-    void KaprekarsConstantFirstTest() {
-
-        Assertions.assertEquals(3, Task6.countK(3524));
+    void kaprekarsConstantFirstTest() {
+        assertEquals(3, countK(3524));
     }
 
     @Test
-    void KaprekarsConstantSecondTest() {
-
-        Assertions.assertEquals(5, Task6.countK(6621));
+    void kaprekarsConstantSecondTest() {
+        assertEquals(5, countK(6621));
     }
 
     @Test
-    void KaprekarsConstantThirirdTest() {
-
-        Assertions.assertEquals(4, Task6.countK(6554));
+    void kaprekarsConstantThirirdTest() {
+        assertEquals(4, countK(6554));
     }
 
     @Test
-    void KaprekarsConstantFourthTest() {
-
-        Assertions.assertEquals(3, Task6.countK(1234));
+    void kaprekarsConstantFourthTest() {
+        assertEquals(3, countK(1234));
     }
 }
 

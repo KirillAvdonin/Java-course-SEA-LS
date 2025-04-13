@@ -12,7 +12,7 @@ public class AlwaysFaultyConnection implements Connection {
     }
 
     @Override
-    public void close() throws Exception {
+    public void close() {
         LOGGER.info("Соединение закрыто");
     }
 }

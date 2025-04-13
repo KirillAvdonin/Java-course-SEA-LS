@@ -7,14 +7,19 @@ public class Task3 {
 
     }
 
-    public static boolean isNested(int[] a, int[] b) {
-        Arrays.sort(a);
-        Arrays.sort(b);
+    public static boolean isNested(int[] firstArray, int[] secondArray) {
 
-        int minFirstArray = a[0];
-        int minSecondArray = b[0];
-        int maxFirstArray = a[a.length - 1];
-        int maxSecondArray = b[b.length - 1];
+        if (firstArray == null || secondArray == null || firstArray.length == 0 || secondArray.length == 0) {
+            throw new RuntimeException("Один из массивов равен null или пуст");
+        }
+
+        Arrays.sort(firstArray);
+        Arrays.sort(secondArray);
+
+        int minFirstArray = firstArray[0];
+        int minSecondArray = secondArray[0];
+        int maxFirstArray = firstArray[firstArray.length - 1];
+        int maxSecondArray = secondArray[secondArray.length - 1];
 
         return minFirstArray > minSecondArray || maxFirstArray < maxSecondArray;
     }

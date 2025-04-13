@@ -1,24 +1,32 @@
 package edu.hw1;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
+import static edu.hw1.Task1.minutesToSeconds;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 class Task1Test {
     @Test
-    void VideosLengthTest1() {
-
-        Assertions.assertEquals(60, Task1.minutesToSeconds("01:00"));
+    void videosLengthTest1() {
+        assertEquals(60, minutesToSeconds("01:00"));
     }
 
     @Test
-    void VideosLengthTest2() {
-
-        Assertions.assertEquals(836, Task1.minutesToSeconds("13:56"));
+    void videosLengthTest2() {
+        assertEquals(836, minutesToSeconds("13:56"));
     }
 
     @Test
-    void VideosLengthTest3() {
+    void videosLengthTest3() {
+        assertEquals(-1, minutesToSeconds("10:60"));
+    }
 
-        Assertions.assertEquals(-1, Task1.minutesToSeconds("10:60"));
+    @Test
+    void videosLengthTest4() {
+        assertThrows(RuntimeException.class,()->minutesToSeconds(null));
+    }
+
+    @Test
+    void videosLengthTest5() {
+        assertThrows(RuntimeException.class,()->minutesToSeconds(""));
     }
 }

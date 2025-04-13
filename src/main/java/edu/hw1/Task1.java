@@ -10,6 +10,10 @@ public class Task1 {
         int minutes;
         int seconds;
 
+        if (timeString == null || timeString.isEmpty()) {
+            throw new RuntimeException("Конвертируемая строка пуста или равна null");
+        }
+
         String[] parts = timeString.split(":");
 
         if (parts.length != 2) {

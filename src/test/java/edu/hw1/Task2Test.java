@@ -1,24 +1,21 @@
 package edu.hw1;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static edu.hw1.Task2.countDigits;
 class Task2Test {
     @Test
     void countDigitsTest1() {
-
-        Assertions.assertEquals(4, Task2.countDigits(4666));
+        assertEquals(4, countDigits(4666));
     }
 
     @Test
     void countDigitsTest2() {
-
-        Assertions.assertEquals(3, Task2.countDigits(544));
+        assertEquals(3, countDigits(544));
     }
 
     @Test
     void countDigitsTest3() {
-
-        Assertions.assertEquals(1, Task2.countDigits(0));
+        assertEquals(1, countDigits(0));
     }
 }

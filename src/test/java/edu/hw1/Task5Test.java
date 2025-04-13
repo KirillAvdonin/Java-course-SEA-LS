@@ -1,29 +1,27 @@
 package edu.hw1;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static edu.hw1.Task5.isPalindrome;
 
-public class Task5Test {
+class Task5Test {
     @Test
-    void SpecialPalindromeTest1() {
-        Assertions.assertTrue(Task5.isPalindrome(11211230));
+    void specialPalindromeTest1() {
+        assertTrue(isPalindrome(11211230));
     }
 
     @Test
-    void SpecialPalindromeTest2() {
-
-        Assertions.assertTrue(Task5.isPalindrome(13001120));
+    void specialPalindromeTest2() {
+        assertTrue(isPalindrome(13001120));
     }
 
     @Test
-    void SpecialPalindromeTest3() {
-
-        Assertions.assertTrue(Task5.isPalindrome(23336014));
+    void specialPalindromeTest3() {
+        assertTrue(isPalindrome(23336014));
     }
 
     @Test
-    void SpecialPalindromeTest4() {
-
-        Assertions.assertTrue(Task5.isPalindrome(11));
+    void specialPalindromeTest4() {
+        assertTrue(isPalindrome(11));
     }
 }
