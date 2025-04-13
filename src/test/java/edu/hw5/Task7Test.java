@@ -1,66 +1,69 @@
 package edu.hw5;
 
-import edu.hw5.Task7.AllTasksForSevenTask;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
+
+import static edu.hw5.Task7.AllTasksForSevenTask.task1;
+import static edu.hw5.Task7.AllTasksForSevenTask.task2;
+import static edu.hw5.Task7.AllTasksForSevenTask.task3;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class Task7Test {
-    @Test
+    @ParameterizedTest
+    @CsvSource({
+        "000, true",
+        "100, true",
+        "0101, true",
+        "11000, true",
+        "00, false",
+        "10, false",
+        "011, false",
+        "111, false",
+        "001, false",
+        "101, false"
+    })
     @DisplayName("Task 1: Строка содержит не менее 3 символов, причем третий символ равен 0")
-    void task1_test() {
-        assertTrue(AllTasksForSevenTask.task1("000"));
-        assertTrue(AllTasksForSevenTask.task1("100"));
-        assertTrue(AllTasksForSevenTask.task1("0101"));
-        assertTrue(AllTasksForSevenTask.task1("11000"));
-        assertFalse(AllTasksForSevenTask.task1("00"));
-        assertFalse(AllTasksForSevenTask.task1("10"));
-        assertFalse(AllTasksForSevenTask.task1("011"));
-        assertFalse(AllTasksForSevenTask.task1("111"));
-        assertFalse(AllTasksForSevenTask.task1("001"));
-        assertFalse(AllTasksForSevenTask.task1("101"));
+    void task1_test(String input, boolean expected) {
+        assertEquals(expected,task1(input));
     }
 
-    @Test
+    @ParameterizedTest
+    @CsvSource({
+        "00, true",
+        "11, true",
+        "010, true",
+        "101, true",
+        "0000, true",
+        "1111, true",
+        "01110, true",
+        "10001, true",
+        "01, false",
+        "10, false",
+        "011, false",
+        "100, false",
+        "0101, false",
+        "1010, false"
+    })
     @DisplayName("Task 2: Строка начинается и заканчивается одним и тем же символом")
-    void task2_test() {
-        assertTrue(AllTasksForSevenTask.task2("00"));
-        assertTrue(AllTasksForSevenTask.task2("11"));
-        assertTrue(AllTasksForSevenTask.task2("010"));
-        assertTrue(AllTasksForSevenTask.task2("101"));
-        assertTrue(AllTasksForSevenTask.task2("0000"));
-        assertTrue(AllTasksForSevenTask.task2("1111"));
-        assertTrue(AllTasksForSevenTask.task2("01110"));
-        assertTrue(AllTasksForSevenTask.task2("10001"));
-        assertFalse(AllTasksForSevenTask.task2("01"));
-        assertFalse(AllTasksForSevenTask.task2("10"));
-        assertFalse(AllTasksForSevenTask.task2("011"));
-        assertFalse(AllTasksForSevenTask.task2("100"));
-        assertFalse(AllTasksForSevenTask.task2("0101"));
-        assertFalse(AllTasksForSevenTask.task2("1010"));
+    void task2_test(String input, boolean expected) {
+        assertEquals(expected,task2(input));
     }
 
-    @Test
-    @DisplayName("Task 3: Длина строки не менее 1 и не более 3")
-    void task3_test() {
-        assertTrue(AllTasksForSevenTask.task3("0"));
-        assertTrue(AllTasksForSevenTask.task3("1"));
-        assertTrue(AllTasksForSevenTask.task3("00"));
-        assertTrue(AllTasksForSevenTask.task3("01"));
-        assertTrue(AllTasksForSevenTask.task3("10"));
-        assertTrue(AllTasksForSevenTask.task3("11"));
-        assertTrue(AllTasksForSevenTask.task3("000"));
-        assertTrue(AllTasksForSevenTask.task3("001"));
-        assertTrue(AllTasksForSevenTask.task3("010"));
-        assertTrue(AllTasksForSevenTask.task3("011"));
-        assertTrue(AllTasksForSevenTask.task3("100"));
-        assertTrue(AllTasksForSevenTask.task3("101"));
-        assertTrue(AllTasksForSevenTask.task3("110"));
-        assertTrue(AllTasksForSevenTask.task3("111"));
-        assertFalse(AllTasksForSevenTask.task3(""));
-        assertFalse(AllTasksForSevenTask.task3("0000"));
-        assertFalse(AllTasksForSevenTask.task3("1111"));
-        assertFalse(AllTasksForSevenTask.task3("01010"));
+    @ParameterizedTest
+    @ValueSource(strings = {"0", "1", "00", "01", "10", "11", "000", "001", "010", "011", "100", "101", "110", "111"})
+    @DisplayName("Task 3: Длина строки не менее 1 и не более 3 (True cases)")
+    void task3_test_true(String input) {
+        assertTrue(task3(input));
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = { "0000", "1111", "01010"})
+    @DisplayName("Task 3: Длина строки не менее 1 и не более 3 (False cases)")
+    void task3_test_false(String input) {
+        assertFalse(task3(input));
     }
 }

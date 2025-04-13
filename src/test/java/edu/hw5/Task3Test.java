@@ -93,7 +93,7 @@ class Task3Test {
     @DisplayName("Парсинг строки с лишними пробелами")
     void parseDate_extra_spaces() {
         Optional<LocalDate> date = ChainOfParsers.parseDate("  2020-10-10  ");
-        assertFalse(date.isPresent()); // Пробелы не обрабатываются текущей реализацией
+        assertFalse(date.isPresent());
     }
 
     @Test

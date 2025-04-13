@@ -25,7 +25,7 @@ public class Task1 {
         LocalDateTime startTime;
         LocalDateTime endTime;
 
-        if (sessions.isEmpty()) {
+        if (sessions == null || sessions.isEmpty()) {
             throw new RuntimeException("Лист пуст или равен null");
         }
         for (String session : sessions) {

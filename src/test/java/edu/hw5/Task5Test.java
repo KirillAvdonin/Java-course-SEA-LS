@@ -1,94 +1,75 @@
 package edu.hw5;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+import static org.junit.jupiter.api.Assertions.*;
 
 class Task5Test {
-    @Test
-    @DisplayName("Корректный номер с двузначным регионом (не начинающимся с 0)")
-    void isValidAutoNumber_validTwoDigitRegion() {
-        assertTrue(Task5.isValidAutoNumber("А123ВС99"));
-        assertTrue(Task5.isValidAutoNumber("В987НЕ10"));
-        assertTrue(Task5.isValidAutoNumber("Е012КЕ01"));
-        assertTrue(Task5.isValidAutoNumber("К555УМ25"));
-        assertTrue(Task5.isValidAutoNumber("М321НО50"));
-        assertTrue(Task5.isValidAutoNumber("Н789КР77"));
-        assertTrue(Task5.isValidAutoNumber("О456РС90"));
-        assertTrue(Task5.isValidAutoNumber("Р654СТ17"));
-        assertTrue(Task5.isValidAutoNumber("С234АВ79"));
-        assertTrue(Task5.isValidAutoNumber("Т876КК99"));
+
+    @ParameterizedTest
+    @ValueSource(strings = {"А123ВС99", "В987НЕ10", "Е012КЕ01",
+            "К555УМ25", "М321НО50", "Н789КР77", "О456РС90", "Р654СТ17",
+            "С234АВ79", "Т876КК99", "С234АВ177", "Р654СТ750", "К555УМ999",
+            "К555УМ123", "М321НО777", "Н789АА900"})
+    @DisplayName("Корректные номера (двух- и трехзначные регионы)")
+    void isValidAutoNumber_validFormats(String number) {
+        assertTrue(Task5.isValidAutoNumber(number));
     }
 
-    @Test
-    @DisplayName("Корректный номер с трехзначным регионом (начинающимся с 1, 7 или 9)")
-    void isValidAutoNumber_validThreeDigitRegion() {
-        assertTrue(Task5.isValidAutoNumber("С234АВ177"));
-        assertTrue(Task5.isValidAutoNumber("Р654СТ750"));
-        assertTrue(Task5.isValidAutoNumber("К555УМ999"));
-        assertTrue(Task5.isValidAutoNumber("К555УМ123"));
-        assertTrue(Task5.isValidAutoNumber("М321НО777"));
-        assertTrue(Task5.isValidAutoNumber("Н789АА900"));
-    }
-
-    @Test
+    @ParameterizedTest
+    @ValueSource(strings = {"X123ВГ99", "1123ВГ99", "_123ВГ99"})
     @DisplayName("Некорректный номер: неверный первый символ")
-    void isValidAutoNumber_invalidFirstChar() {
-        assertFalse(Task5.isValidAutoNumber("X123ВГ99"));
-        assertFalse(Task5.isValidAutoNumber("1123ВГ99"));
-        assertFalse(Task5.isValidAutoNumber("_123ВГ99"));
+    void isValidAutoNumber_invalidFirstChar(String number) {
+        assertFalse(Task5.isValidAutoNumber(number));
     }
 
-    @Test
-    @DisplayName("Некорректный номер: неверные цифры (00 или начинаются с 0)")
-    void isValidAutoNumber_invalidDigits() {
-        assertFalse(Task5.isValidAutoNumber("А003ВГ99"));
-        assertFalse(Task5.isValidAutoNumber("А013ВГ99"));
-        assertFalse(Task5.isValidAutoNumber("А093ВГ99"));
+    @ParameterizedTest
+    @ValueSource(strings = {"А003ВГ99", "А013ВГ99", "А093ВГ99"})
+    @DisplayName("Некорректный номер: неверные цифры (начинаются с 0)")
+    void isValidAutoNumber_invalidDigitsStartWithZero(String number) {
+        assertFalse(Task5.isValidAutoNumber(number));
     }
 
-    @Test
+    @ParameterizedTest
+    @ValueSource(strings = {"А123ХГ99", "А123В199", "А123ВГZ9"})
     @DisplayName("Некорректный номер: неверные средние символы")
-    void isValidAutoNumber_invalidMiddleChars() {
-        assertFalse(Task5.isValidAutoNumber("А123ХГ99"));
-        assertFalse(Task5.isValidAutoNumber("А123В199"));
-        assertFalse(Task5.isValidAutoNumber("А123ВГZ9"));
+    void isValidAutoNumber_invalidMiddleChars(String number) {
+        assertFalse(Task5.isValidAutoNumber(number));
     }
 
-    @Test
+    @ParameterizedTest
+    @ValueSource(strings = {"А123ВГ02", "А123ВГ09", "А123ВГ00"})
     @DisplayName("Некорректный номер: неверный формат региона (начинается с 0, кроме 01)")
-    void isValidAutoNumber_invalidRegionStartsWithZero() {
-        assertFalse(Task5.isValidAutoNumber("А123ВГ02"));
-        assertFalse(Task5.isValidAutoNumber("А123ВГ09"));
-        assertFalse(Task5.isValidAutoNumber("А123ВГ00"));
+    void isValidAutoNumber_invalidRegionStartsWithZero(String number) {
+        assertFalse(Task5.isValidAutoNumber(number));
     }
 
-    @Test
+    @ParameterizedTest
+    @ValueSource(strings = {"А123ВГ200", "А123ВГ077", "А123ВГ888"})
     @DisplayName("Некорректный номер: неверный формат региона (трехзначный, не начинается с 1, 7 или 9)")
-    void isValidAutoNumber_invalidThreeDigitRegionStart() {
-        assertFalse(Task5.isValidAutoNumber("А123ВГ200"));
-        assertFalse(Task5.isValidAutoNumber("А123ВГ077"));
-        assertFalse(Task5.isValidAutoNumber("А123ВГ888"));
+    void isValidAutoNumber_invalidThreeDigitRegionStart(String number) {
+        assertFalse(Task5.isValidAutoNumber(number));
     }
 
-    @Test
+    @ParameterizedTest
+    @ValueSource(strings = {"А12ВГ9", "А123ВГ"})
     @DisplayName("Некорректный номер: слишком короткая строка")
-    void isValidAutoNumber_tooShort() {
-        assertFalse(Task5.isValidAutoNumber("А12ВГ9"));
-        assertFalse(Task5.isValidAutoNumber("А123ВГ"));
+    void isValidAutoNumber_tooShort(String number) {
+        assertFalse(Task5.isValidAutoNumber(number));
     }
 
-    @Test
+    @ParameterizedTest
+    @ValueSource(strings = {"А123ВВ9999", "А123ВС1777"})
     @DisplayName("Некорректный номер: слишком длинная строка")
-    void isValidAutoNumber_tooLong() {
-        assertFalse(Task5.isValidAutoNumber("А123ВВ9999"));
-        assertFalse(Task5.isValidAutoNumber("А123ВС1777"));
+    void isValidAutoNumber_tooLong(String number) {
+        assertFalse(Task5.isValidAutoNumber(number));
     }
 
-    @Test
+    @ParameterizedTest
+    @ValueSource(strings = {"А123ВС9"})
     @DisplayName("Некорректный номер: регион из одной цифры")
-    void isValidAutoNumber_singleDigitRegion() {
-        assertFalse(Task5.isValidAutoNumber("А123ВС9"));
+    void isValidAutoNumber_singleDigitRegion(String number) {
+        assertFalse(Task5.isValidAutoNumber(number));
     }
 }

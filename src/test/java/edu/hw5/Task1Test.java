@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static edu.hw5.Task1.averageTimePerSession;
 
 class Task1Test {
     @Test
@@ -16,7 +17,7 @@ class Task1Test {
             "2023-10-22, 12:00 - 2023-10-22, 12:30"
         );
         String expected = "Среднее количество времени, проведенного в компьютерном клубе:1ч 20м";
-        assertEquals(expected, Task1.averageTimePerSession(sessions));
+        assertEquals(expected, averageTimePerSession(sessions));
     }
 
     @Test
@@ -24,7 +25,7 @@ class Task1Test {
     void averageTimePerSession_singleSession() {
         List<String> sessions = List.of("2024-04-06, 19:00 - 2024-04-06, 20:15");
         String expected = "Среднее количество времени, проведенного в компьютерном клубе:1ч 15м";
-        assertEquals(expected, Task1.averageTimePerSession(sessions));
+        assertEquals(expected, averageTimePerSession(sessions));
     }
 
     @Test
@@ -36,14 +37,14 @@ class Task1Test {
             "2025-01-17, 17:00 - 2025-01-17, 17:03"
         );
         String expected = "Среднее количество времени, проведенного в компьютерном клубе:0ч 2м";
-        assertEquals(expected, Task1.averageTimePerSession(sessions));
+        assertEquals(expected, averageTimePerSession(sessions));
     }
 
     @Test
     @DisplayName("Выброс исключения для пустого списка сессий")
     void averageTimePerSession_emptyList() {
         List<String> sessions = List.of();
-        assertThrows(RuntimeException.class, () -> Task1.averageTimePerSession(sessions), "Лист пуст или равен null");
+        assertThrows(RuntimeException.class, () -> averageTimePerSession(sessions), "Лист пуст или равен null");
     }
 
     @Test
@@ -51,7 +52,7 @@ class Task1Test {
     void averageTimePerSession_invalidFormat() {
         List<String> sessions = List.of("2023-10-20 10:00 - 2023-10-20 11:30");
         assertThrows(
-            RuntimeException.class, () -> Task1.averageTimePerSession(sessions),
+            RuntimeException.class, () -> averageTimePerSession(sessions),
             "Некорректный ввод данных о сессии, введите в форматеyyyy-MM-dd, HH:MM -yyyy-MM-dd, HH:MM"
         );
     }
@@ -62,7 +63,7 @@ class Task1Test {
         List<String> sessions = List.of("2023-10-20, 10:00 - 2023-10-20, 11:30", "");
         assertThrows(
             RuntimeException.class,
-            () -> Task1.averageTimePerSession(sessions),
+            () -> averageTimePerSession(sessions),
             "Сессия пуста или равна null"
         );
     }
@@ -75,7 +76,7 @@ class Task1Test {
             "2024-03-02, 14:00 - 2024-03-02, 17:00"
         );
         String expected = "Среднее количество времени, проведенного в компьютерном клубе:3ч 0м";
-        assertEquals(expected, Task1.averageTimePerSession(sessions));
+        assertEquals(expected, averageTimePerSession(sessions));
     }
 
     @Test
@@ -83,7 +84,7 @@ class Task1Test {
     void averageTimePerSession_nextDay() {
         List<String> sessions = List.of("2025-04-06, 20:00 - 2025-04-07, 01:00");
         String expected = "Среднее количество времени, проведенного в компьютерном клубе:5ч 0м";
-        assertEquals(expected, Task1.averageTimePerSession(sessions));
+        assertEquals(expected, averageTimePerSession(sessions));
     }
 }
 

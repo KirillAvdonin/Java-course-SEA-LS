@@ -18,9 +18,12 @@ public class SearchAllFridaysThirteen {
         if (year <= 0) {
             throw new RuntimeException("Год не может быть отрицательным");
         }
+
         List<LocalDate> fridayThirteenths = new ArrayList<>();
+
         for (int month = FIRST_MONTH; month <= LAST_MONTH; month++) {
             LocalDate thirteenth = LocalDate.of(year, month, THIRTEEN);
+
             if (thirteenth.getDayOfWeek() == DayOfWeek.FRIDAY) {
                 fridayThirteenths.add(thirteenth);
             }

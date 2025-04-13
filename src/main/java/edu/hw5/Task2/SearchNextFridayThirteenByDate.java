@@ -17,6 +17,7 @@ public class SearchNextFridayThirteenByDate {
             LocalDate date = LocalDate.from(temporal);
             while (true) {
                 date = date.plusDays(OFFSET);
+
                 if (date.getDayOfMonth() == THIRTEEN && date.getDayOfWeek() == DayOfWeek.FRIDAY) {
                     return date;
                 }

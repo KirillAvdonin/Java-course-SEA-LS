@@ -1,61 +1,46 @@
 package edu.hw5;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+
+import static edu.hw5.Task6.isSecondStringContainsFirst;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class Task6Test {
-    @Test
+    @ParameterizedTest
+    @CsvSource({
+            "abc, xyzabcv",
+            "world, hello world!",
+            "123, start123end",
+            "a, banana",
+            "test, this is a test.",
+            "a.b, xyz a.b v",
+            "a*b, xyz a*b v",
+            "a?b, xyz a?b v",
+            "\\[ab\\], xyz [ab] v",
+            "a\\.b, xyz a.b v",
+            "a\\*b, xyz a*b v",
+            "a\\+b, xyz a+b v",
+            "a\\?b, xyz a?b v",
+            "\\[ab\\], xyz [ab] v",
+    })
     @DisplayName("Вторая строка содержит первую строку как подстроку")
-    void isSecondStringContainsFirst_contains() {
-        assertTrue(Task6.isSecondStringContainsFirst("abc", "xyzabcv"));
-        assertTrue(Task6.isSecondStringContainsFirst("world", "hello world!"));
-        assertTrue(Task6.isSecondStringContainsFirst("123", "start123end"));
-        assertTrue(Task6.isSecondStringContainsFirst("a", "banana"));
-        assertTrue(Task6.isSecondStringContainsFirst("", "any string"));
-        assertTrue(Task6.isSecondStringContainsFirst("test", "this is a test."));
+    void isSecondStringContainsFirst_contains(String first, String second) {
+        assertTrue(isSecondStringContainsFirst(first, second));
     }
 
-    @Test
+    @ParameterizedTest
+    @CsvSource({
+            "def, abc",
+            "universe, galaxy",
+            "456, 123789",
+            "apple, apricot",
+            "longerstring, short"
+    })
     @DisplayName("Вторая строка не содержит первую строку")
-    void isSecondStringContainsFirst_notContains() {
-        assertFalse(Task6.isSecondStringContainsFirst("def", "abc"));
-        assertFalse(Task6.isSecondStringContainsFirst("universe", "galaxy"));
-        assertFalse(Task6.isSecondStringContainsFirst("456", "123789"));
-        assertFalse(Task6.isSecondStringContainsFirst("apple", "apricot"));
-        assertFalse(Task6.isSecondStringContainsFirst(" ", ""));
+    void isSecondStringContainsFirst_notContains(String first, String second) {
+        assertFalse(isSecondStringContainsFirst(first, second));
     }
-
-    @Test
-    @DisplayName("Первая строка длиннее второй строки")
-    void isSecondStringContainsFirst_firstLonger() {
-        assertFalse(Task6.isSecondStringContainsFirst("longerstring", "short"));
-    }
-
-    @Test
-    @DisplayName("Обе строки пустые")
-    void isSecondStringContainsFirst_bothEmpty() {
-        assertTrue(Task6.isSecondStringContainsFirst("", ""));
-    }
-
-    @Test
-    @DisplayName("Первая строка содержит специальные символы")
-    void isSecondStringContainsFirst_firstHasSpecialChars() {
-        assertTrue(Task6.isSecondStringContainsFirst("a.b", "xyz a.b v"));
-        assertTrue(Task6.isSecondStringContainsFirst("a*b", "xyz a*b v"));
-        assertTrue(Task6.isSecondStringContainsFirst("a?b", "xyz a?b v"));
-        assertTrue(Task6.isSecondStringContainsFirst("[ab]", "xyz a v"));
-    }
-
-    @Test
-    @DisplayName("Вторая строка содержит первую строку с экранированными специальными символами")
-    void isSecondStringContainsFirst_firstHasEscapedSpecialChars() {
-        assertTrue(Task6.isSecondStringContainsFirst("a\\.b", "xyz a.b v"));
-        assertTrue(Task6.isSecondStringContainsFirst("a\\*b", "xyz a*b v"));
-        assertTrue(Task6.isSecondStringContainsFirst("a\\+b", "xyz a+b v"));
-        assertTrue(Task6.isSecondStringContainsFirst("a\\?b", "xyz a?b v"));
-        assertTrue(Task6.isSecondStringContainsFirst("\\[ab\\]", "xyz [ab] v"));
-    }
-
 }
