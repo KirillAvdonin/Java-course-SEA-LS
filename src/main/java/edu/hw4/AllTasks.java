@@ -70,6 +70,7 @@ public class AllTasks {
     //Задача 6.Самое тяжелое животное каждого вида -> Map<Animal.Type, Animal>
     public static Map<Animal.Type, Animal> task6(List<Animal> animals) {
         return animals.stream()
+            .filter(Objects::nonNull)
             .collect(Collectors.groupingBy(
                 Animal::type,
                 Collectors.maxBy(Comparator.comparingInt(Animal::weight))
@@ -140,6 +141,7 @@ public class AllTasks {
     //Задача 14.Есть ли в списке собака ростом более k см -> Boolean
     public static boolean task14(List<Animal> animalsForFourteenthTask, int k) {
         boolean isHaveDog = animalsForFourteenthTask.stream()
+            .filter(Objects::nonNull)
             .filter(animal -> animal.type() == Animal.Type.DOG && animal.height() > k)
             .toList()
             .isEmpty();
@@ -157,6 +159,7 @@ public class AllTasks {
     //Задача 16.Список животных, отсортированный по виду, затем по полу, затем по имени -> List<Animal>
     public static List<Animal> task16(List<Animal> animalsForSixteenthTask) {
         return animalsForSixteenthTask.stream()
+            .filter(Objects::nonNull)
             .sorted(Comparator.comparing(Animal::type)
                 .thenComparing(Animal::sex)
                 .thenComparing(Animal::name))
@@ -182,6 +185,7 @@ public class AllTasks {
     //Задача 18.Найти самую тяжелую рыбку в 2-х или более списках -> Animal
     public static Animal task18(List<List<Animal>> animalsForEighteenthTask) {
         return animalsForEighteenthTask.stream()
+            .filter(Objects::nonNull)
             .flatMap(Collection::stream)
             .filter(animal -> animal.type() == Animal.Type.FISH)
             .max(Comparator.comparingInt(Animal::weight))
@@ -192,6 +196,7 @@ public class AllTasks {
     // -> Map<String, Set<ValidationError>>.
     public static Map<String, Set<ValidationError>> task19(List<Animal> animalsForNineteenthTask) {
         return animalsForNineteenthTask.stream()
+            .filter(Objects::nonNull)
             .filter(animal -> !Animal.animalWithErrors(animal).isEmpty())
             .collect(Collectors.toMap(Animal::name, Animal::animalWithErrors));
     }
@@ -200,6 +205,7 @@ public class AllTasks {
     // -> Map<String, Set<ValidationError>>.
     public static Map<String, String> task20(List<Animal> animalsForNineteenthTask) {
         return animalsForNineteenthTask.stream()
+            .filter(Objects::nonNull)
             .filter(animal -> !Animal.animalWithErrors(animal).isEmpty())
             .collect(Collectors.toMap(
                 Animal::name,
