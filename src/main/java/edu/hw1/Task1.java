@@ -1,7 +1,7 @@
 package edu.hw1;
 
 public class Task1 {
-    public static final int SECONDSINMINUTE = 60;
+    public static final int SECONDS_IN_MINUTE = 60;
 
     private Task1() {
     }
@@ -9,6 +9,10 @@ public class Task1 {
     public static int minutesToSeconds(String timeString) {
         int minutes;
         int seconds;
+
+        if (timeString == null || timeString.isEmpty()) {
+            throw new RuntimeException("Конвертируемая строка пуста или равна null");
+        }
 
         String[] parts = timeString.split(":");
 
@@ -23,11 +27,11 @@ public class Task1 {
             return -1;
         }
 
-        if (minutes < 0 || seconds < 0 || seconds >= SECONDSINMINUTE) {
+        if (minutes < 0 || seconds < 0 || seconds >= SECONDS_IN_MINUTE) {
             return -1;
         }
 
-        return minutes * SECONDSINMINUTE + seconds;
+        return minutes * SECONDS_IN_MINUTE + seconds;
     }
 }
 

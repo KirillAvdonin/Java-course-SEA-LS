@@ -1,29 +1,34 @@
 package edu.hw1;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static edu.hw1.Task7.rotateLeft;
+import static edu.hw1.Task7.rotateRight;
 
-public class Task7Test {
+class Task7Test {
     @Test
-    @DisplayName("Циклический сдвиг")
-    void CyclicBitShiftFirst() {
-        int cyclicShift1 = Task7.rotateRight(8, 1);
-        Assertions.assertEquals(4, cyclicShift1);
+    void CyclicBitShiftTest1() {
+        assertEquals(4, rotateRight(8, 1));
     }
 
     @Test
-    @DisplayName("Циклический сдвиг")
-    void CyclicBitShiftSecond() {
-        int cyclicShift2 = Task7.rotateLeft(16, 1);
-        Assertions.assertEquals(1, cyclicShift2);
+    void CyclicBitShiftTest2() {
+        assertEquals(1, rotateLeft(16, 1));
     }
 
     @Test
-    @DisplayName("Циклический сдвиг")
-    void CyclicBitShiftThird() {
-        int cyclicShift3 = Task7.rotateLeft(17, 2);
-        Assertions.assertEquals(6, cyclicShift3);
+    void CyclicBitShiftTest3() {
+        assertEquals(6, rotateLeft(17, 2));
+    }
+
+    @Test
+    void CyclicBitShiftTest4() {
+        assertEquals(2, rotateLeft(8, 10));
+    }
+
+    @Test
+    void CyclicBitShiftTest5() {
+        assertEquals(5, rotateRight(10, 11));
     }
 
 }

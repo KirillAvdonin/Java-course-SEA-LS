@@ -1,46 +1,26 @@
 package edu.hw1;
 
+import java.util.Arrays;
+
 public class Task3 {
     private Task3() {
 
     }
 
-    public static boolean isNested(int[] a, int[] b) {
-        int[] firstArray = a;
-        int[] secondArray = b;
-        int minFirstArray = a[0];
-        int minSecondArray = b[0];
-        int maxFirstArray = 0;
-        int maxSecondArray = 0;
-        boolean isNested = false;
+    public static boolean isNested(int[] firstArray, int[] secondArray) {
 
-        for (int num : firstArray) {
-            if (num < minFirstArray) {
-                minFirstArray = num;
-            }
+        if (firstArray == null || secondArray == null || firstArray.length == 0 || secondArray.length == 0) {
+            throw new RuntimeException("Один из массивов равен null или пуст");
         }
 
-        for (int num : secondArray) {
-            if (num < minSecondArray) {
-                minSecondArray = num;
-            }
-        }
+        Arrays.sort(firstArray);
+        Arrays.sort(secondArray);
 
-        for (int num : firstArray) {
-            if (num > maxFirstArray) {
-                maxFirstArray = num;
-            }
-        }
+        int minFirstArray = firstArray[0];
+        int minSecondArray = secondArray[0];
+        int maxFirstArray = firstArray[firstArray.length - 1];
+        int maxSecondArray = secondArray[secondArray.length - 1];
 
-        for (int num : secondArray) {
-            if (num > maxSecondArray) {
-                maxSecondArray = num;
-            }
-        }
-
-        if (minFirstArray > minSecondArray || maxFirstArray < maxSecondArray) {
-            isNested = true;
-        }
-        return isNested;
+        return minFirstArray > minSecondArray || maxFirstArray < maxSecondArray;
     }
 }
