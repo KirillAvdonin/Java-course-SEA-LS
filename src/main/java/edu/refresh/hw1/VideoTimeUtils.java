@@ -6,6 +6,8 @@ public final class VideoTimeUtils {
     private VideoTimeUtils() {
     }
 
+    private static final int SECONDS_IN_MINUTE = 60;
+
     public static int durationToSeconds(String duration) {
         if (duration == null) {
             return -1;
@@ -17,7 +19,7 @@ public final class VideoTimeUtils {
 
         String[] durationArray = duration.split(":");
 
-        return Integer.parseInt(durationArray[0]) * 60 + Integer.parseInt(durationArray[1]);
+        return Integer.parseInt(durationArray[0]) * SECONDS_IN_MINUTE + Integer.parseInt(durationArray[1]);
     }
 
     public static String fixBrokenTitle(String title) {
